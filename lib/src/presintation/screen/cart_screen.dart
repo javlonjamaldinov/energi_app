@@ -1,4 +1,3 @@
-import 'package:energi_app/src/helper/navigation_helper.dart';
 import 'package:energi_app/src/presintation/screen/success_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -6,11 +5,16 @@ import 'package:energi_app/src/presintation/ui/theme/app_colors.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CartScreen extends StatefulWidget {
-  const CartScreen({super.key, });
+  const CartScreen({
+    super.key,
+    this.count,
+    this.amount,
+  });
+  final int? count;
+  final int? amount;
 
   @override
   _CartScreenState createState() => _CartScreenState();
-
 }
 
 class _CartScreenState extends State<CartScreen> {
@@ -21,7 +25,7 @@ class _CartScreenState extends State<CartScreen> {
   // Пример продукта, вы можете заменить его на свой продукт
   final Map<String, dynamic> product = {
     'price': 16.48, // цена за единицу
-    'quantity': 2, // количество
+    'quantity': 2,
   };
 
   @override
@@ -89,13 +93,13 @@ class _CartScreenState extends State<CartScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSummaryRow('Order', '\$${totalPrice.toStringAsFixed(2)}'),
-        _buildSummaryRow('Taxes', '\$0.3'),
+        _buildSummaryRow('Counts', '${widget.count}'),
+        _buildSummaryRow('Product Price', '99'),
         _buildSummaryRow('Delivery fees', '\$1.5'),
         const Divider(),
         _buildSummaryRow(
           'Total:',
-          '\$${(totalPrice + 0.3 + 1.5).toStringAsFixed(2)}', // Итого с учетом налогов и доставки
+          '\$${widget.amount}', // Итого с учетом налогов и доставки
           isBold: true,
           textSize: 18.sp,
         ),
@@ -268,7 +272,7 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             Text(
-              '\$${(totalPrice + 0.3 + 1.5).toStringAsFixed(2)}', // Итого с учетом налогов и доставки
+              '\$${widget.amount}', // Итого с учетом налогов и доставки
               style: TextStyle(
                 fontSize: 18.sp,
                 color: AppColors.grey,

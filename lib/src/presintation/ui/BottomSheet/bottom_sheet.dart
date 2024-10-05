@@ -1,4 +1,4 @@
-import 'package:energi_app/src/helper/navigation_helper.dart';
+import 'package:energi_app/src/presintation/screen/cart_screen.dart';
 import 'package:energi_app/src/presintation/ui/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -8,6 +8,9 @@ class MyBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const int count = 1;
+    const int amount = 100;
+
     return Column(
       mainAxisSize: MainAxisSize.min, // Это важно для ограничения высоты Column
       children: [
@@ -186,6 +189,7 @@ class MyBottomSheet extends StatelessWidget {
               ),
               SizedBox(height: 10.sp),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   _buildSizeOption('Can', true),
                   _buildSizeOption('300 ml', false),
@@ -213,7 +217,16 @@ class MyBottomSheet extends StatelessWidget {
               const Spacer(),
               ElevatedButton(
                 onPressed: () {
-                      navigateToScreen(context, 1); 
+                  // navigateToScreen(context, 1);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CartScreen(
+                        amount: amount,
+                        count: count,
+                      ),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.green,

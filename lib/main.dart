@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer( // Оборачиваем приложение в ResponsiveSizer
+    return ResponsiveSizer(
+      // Оборачиваем приложение в ResponsiveSizer
       builder: (context, orientation, screenType) {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,

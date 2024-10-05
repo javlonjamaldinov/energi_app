@@ -1,5 +1,3 @@
-import 'package:energi_app/src/helper/navigation_helper.dart';
-
 import 'package:energi_app/src/presintation/ui/theme/app_colors.dart';
 import 'package:energi_app/src/presintation/widgets/buttom_nav_bar.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +9,7 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -19,13 +17,11 @@ class _HomePageState extends State<HomePage> {
 
   void _navigateWithLoading(BuildContext context) async {
     setState(() {
-      _isLoading = true; // Включаем индикатор загрузки
+      _isLoading = true;
     });
 
-    // Имитация задержки в 5 секунд
     await Future.delayed(const Duration(seconds: 3));
 
-    // Переход на экран после задержки
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -33,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
     setState(() {
-      _isLoading = false; // Выключаем индикатор загрузки
+      _isLoading = false;
     });
   }
 
@@ -42,7 +38,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Задний фон с градиентом
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -52,15 +47,13 @@ class _HomePageState extends State<HomePage> {
                 stops: const [0.7, 1.0],
               ),
             ),
-            height: 100.h, // Контейнер занимает весь экран
+            height: 100.h,
           ),
-
-          // Основное содержимое экрана
           Column(
             children: [
-              SizedBox(height: 10.h), // Отступ сверху
+              SizedBox(height: 10.h),
               SizedBox(
-                height: 50.h, // Высота контейнера для изображения
+                height: 50.h,
                 child: Center(
                   child: SizedBox(
                     width: 80.w,
@@ -74,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 style: GoogleFonts.anton(
                   textStyle: TextStyle(
                     fontSize: 30.sp,
-                    color: AppColors.white, // Цвет текста на фоне градиента
+                    color: AppColors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -83,85 +76,68 @@ class _HomePageState extends State<HomePage> {
                 "The ultimate refreshing drink \n    to enjoy in every festival",
                 style: TextStyle(
                   fontSize: 17.sp,
-                  color: AppColors.white, // Цвет текста на фоне градиента
+                  color: AppColors.white,
                   fontWeight: FontWeight.w300,
                 ),
               ),
-              SizedBox(height: 4.h), // Отступ сверху
+              SizedBox(height: 4.h),
               GestureDetector(
                 onTap: () {
-                  _navigateWithLoading(context); // Вызов метода с задержкой
+                  _navigateWithLoading(context);
                 },
                 child: Container(
                   height: 8.h,
                   width: 80.w,
+                  padding: EdgeInsets.symmetric(horizontal: 2.h),
                   decoration: BoxDecoration(
-                    color: AppColors.white, // Цвет внешнего контейнера
-                    borderRadius:
-                        BorderRadius.circular(20.sp), // Закругленные углы
+                    color: AppColors.green,
+                    borderRadius: BorderRadius.circular(20.sp),
+                    border: Border.all(color: Colors.black, width: 0.2),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withOpacity(0.1), // Цвет тени
-                        blurRadius: 5.sp, // Радиус размытия
-                        offset: const Offset(0, 3), // Смещение тени
+                        color: Colors.black.withOpacity(0.1),
+                        blurRadius: 5.sp,
+                        offset: const Offset(0, 3),
                       ),
                     ],
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.all(2
-                        .sp), // Отступы для создания эффекта "плавающего" контейнера
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.green, // Внутренний зеленый цвет
-                        borderRadius:
-                            BorderRadius.circular(20.sp), // Закругленные углы
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(),
+                      Text(
+                        "Refreshing Drink",
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.white,
+                        ),
                       ),
-                      child: Row(
+                      Row(
                         children: [
-                          SizedBox(width: 25.w), // Отступ сверху
-                          Text(
-                            "Refreshing Drink",
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.white, // Цвет текста
-                            ),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16.sp,
+                            color: AppColors.white,
                           ),
-                          SizedBox(width: 12.w), // Отступ сверху
-                          Row(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.only(right: 3.sp),
-                                child: Icon(
-                                  Icons.arrow_forward_ios, // Первая иконка
-                                  size: 16.sp,
-                                  color: AppColors.white, // Цвет иконки
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(right: 16.sp),
-                                child: Icon(
-                                  Icons.arrow_forward_ios, // Вторая иконка
-                                  size: 15.sp,
-                                  color: AppColors.white, // Цвет иконки
-                                ),
-                              ),
-                            ],
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 15.sp,
+                            color: AppColors.white,
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
-          // Индикатор загрузки по центру экрана
           if (_isLoading)
             Center(
               child: SpinKitFadingCircle(
                 color: AppColors.white,
-                size: 50.sp, // Размер индикатора загрузки
+                size: 50.sp,
               ),
             ),
         ],
